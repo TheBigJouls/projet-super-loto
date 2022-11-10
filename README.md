@@ -8,7 +8,6 @@ A cette occasion, nous recherchons une agence et/ou des freelances implanté-es 
 
 Quelques exemples du front :<br>
 <a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Landing ></a><br>
-<a href="https://thebigjouls.github.io/projet-super-loto/admin.html" target="_blank">Après inscription ></a><br>
 <a href="https://thebigjouls.github.io/projet-super-loto/superloto.html" target="_blank">Page de jeu ></a><br>
 <a href="https://thebigjouls.github.io/projet-super-loto/admin.hmtl" target="_blank">Admin ></a><br>
 <a href="https://thebigjouls.github.io/projet-super-loto/lots.hmtl" target="_blank">Lots ></a><br>
