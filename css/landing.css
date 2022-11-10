@@ -1,0 +1,115 @@
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	font-family: Arial;
+	font-size: 62.5%;
+	background: #000;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+	background-attachment: fixed;
+	color: #fff;
+	font-weight: 900;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+main {
+	min-height: 100%;
+	display: grid;
+	align-content: space-around;
+	padding: 2%;
+	box-sizing: border-box;
+}
+
+	#phifou1 {
+		animation: phifou1 1s infinite;
+	}
+
+	@keyframes phifou1 {
+		0% {
+			transform: rotate(-45deg);
+		}
+		50% {
+			transform: rotate(45deg);
+		}
+		100% {
+			transform: rotate(-45deg);
+		}
+	}
+
+	#phifou2 {
+		animation: phifou2 1s infinite;
+	}
+	@keyframes phifou2 {
+		0% {
+			transform: rotate(45deg);
+		}
+		50% {
+			transform: rotate(-45deg);
+		}
+		100% {
+			transform: rotate(45deg);
+		}
+	}
+
+.boxConfirm {
+	display: grid;
+	justify-items: center;
+	grid-gap: 2vh;
+	font-family: 'Magistral',sans-serif;
+	font-size: 2rem;
+}
+
+	.questionConfirm {
+
+	}
+
+	.downArrow {
+		width: 5rem;
+		animation: fleche .8s infinite;
+	}
+
+		@keyframes fleche {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+			}
+		} 
+
+	.papaConfirm {
+		font-style: italic;
+		color: #ffff00;
+		font-weight: 700;
+	}
+
+	.buttonConfirm {
+		background: linear-gradient(#ff00ff, #000074);
+		text-transform: uppercase;
+		border-radius: 100px;
+		font-style: italic;
+		color: #ffff00;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	.buttonConfirm:hover {
+		color: #00ffff;
+	}
+	.buttonConfirm:hover + .papaConfirm {
+		color: #00ffff;
+	}

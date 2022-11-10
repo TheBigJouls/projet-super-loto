@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Superloto9000</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<style type="text/css">
+		input[type="text"] {
+			border: solid 1px white;
+			padding: 5px 15px;
+			background: black;
+			color:white;
+		}
+
+		body {
+			color:white;
+			font-family: Arial;
+			font-size: 25px;
+		}
+
+		button {
+			border: 3px solid blue;
+			padding: 10px 25px;
+			background: black;
+			color:blue;
+		}
+
+		#notification_template {
+			display: none;
+		}
+		#error {
+			color:red;
+			display: none;
+		}
+
+		.rejected {
+			border: 1px solid #ccc;
+			font-size: 20px;
+			color: #ccc;
+		}
+		#container {
+		    width: 120px;
+		    height: 120px;
+		    font-size: 50px;
+		    color: white;
+		}
+	</style>
+</head>
+<body style="background: black">
+	<div id="container">
+	</div>
+
+	<script type="text/javascript">
+		var container = $("#container");
+
+		var matchBeat = window.setInterval(getThing, 1000);
+
+		function getThing() {
+			$.ajax({
+		        url : 'admin/status',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+		        	if (data.status == "started") {
+		        	} else if (data.status == "stopped") {
+		        	}
+		        	$("#container").html(data.all.join(' | '))
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+	</script>
+</body>
+</html>

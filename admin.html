@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Superloto9000</title>
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<style type="text/css">
+		input[type="text"] {
+			border: solid 1px white;
+			padding: 5px 15px;
+			background: black;
+			color:white;
+		}
+
+		body {
+			color:white;
+			font-family: Arial;
+			font-size: 25px;
+		}
+
+		button {
+			border: 3px solid white;
+			font-size: 20px;
+			padding: 10px 25px;
+			background: #220122;
+			color:white;
+		}
+
+		#notification_template {
+			display: none;
+		}
+		#chat_template {
+			display: none;
+		}
+		#error {
+			color:red;
+			display: none;
+		}
+
+		#number_input {
+			border-color: #ffea7a;
+		    width: 60px;
+		    height: 70px;
+		    font-size: 50px;
+		    color: #ffea7a;
+		    vertical-align: middle;
+		}
+
+		#prize_input {
+		    font-size: 20px;
+		    width: 400px;
+		}
+
+		.video {
+		    position: relative;
+		    float: left;
+		    width: 50%;
+		}
+
+		.video iframe {
+		    min-height: 250px;
+		}
+
+		#prize_input_round {
+		    width: 30px;
+		    font-size: 25px;
+		    margin: 5px;
+		}
+
+		#match_toggle.started {
+			display: none;
+		}
+		.rejected {
+			display: none;
+		}
+		.validated .info {
+		    color: #094a09;
+		}
+		.validated button:not(.rejected), .validated div:not(.info){
+			display: none;
+		}
+		.option-control label {
+			font-size: 18px;
+		}
+
+		#number_form button {
+		    font-size: 26px;
+		    vertical-align: middle;
+		}
+
+		.option-control,
+		.match-control,
+		.controls,
+		#container,
+		.prizes,
+		.chat,
+		#notification_container,
+		#grid_container{
+		    display: block;
+		    float: left;
+		    width: 50%;
+		    position: relative;
+		}
+		.control-control,
+		#number_form,
+		#prize_form,
+		#chat_container,
+		#prize_container{
+		    width: 100%;
+		}
+		.option-control input {
+		    float: right;
+		    margin-right: 30px;
+		}
+
+		#container {
+		    clear: left;
+		    margin-bottom: 50px;
+		}
+		#round .label,
+		#stats .label,
+		#number .label,
+		#numbers .label {
+			font-size:18px;
+			color: #ffea7a;
+			vertical-align:middle;
+		}
+		#round,
+		#stats,
+		#number,
+		#numbers {
+			font-size:45px;
+		}
+		.info {
+		    font-size: 20px;
+		    color: #dbffd1;
+		}
+
+		button {
+		    cursor:pointer;
+		}
+		#notification_container button {
+		    float: left;
+		    margin: 30px 7px;
+		    font-size: 15px;
+		    padding: 10px;
+		}
+
+		.validate {
+		    background: #002b00;
+		}
+
+		.reject {
+		    background: #3e0000;
+		}
+
+		.chifoumi {
+		    background: #553214;
+		}
+		td {
+		    border: 1px solid wheat;
+		    text-align: center;
+			padding: 3px;
+		}
+		table {
+		    border-spacing: 0;
+		    border-collapse: collapse;
+		    margin: 8px;
+		}
+		.grid {
+		    float: left;
+		}
+		.info strong {
+		    text-transform: uppercase;
+		    font-weight: normal;
+		}
+
+		.notification {
+		    clear: both;
+		    padding-top: 33px;
+		}
+
+		.chifoumid .info {
+		    color: #ff9336;
+		}
+		.winner {
+		    color: #55a855;
+		}
+
+		.unselected {
+		    opacity: 0.5;
+		}
+
+		.prizes, .chat {
+			padding-top: 30px;
+		}
+
+		.banned {
+			color: red;
+		}
+
+		.chat_pseudo {
+		    font-size: 20px;
+		    color: #d15cf2;
+		    float: left;
+		    margin: 5px;
+		}
+		.chat_message {
+		    float: left;
+		    clear: ;
+		    font-size: 17px;
+		    margin: 7px;
+		}
+		.chat_post {
+		    clear: both;
+		    margin: 7px 0;
+		}
+	</style>
+</head>
+<body style="background: #050d20">
+	<div class="controls">
+		<div class="control-control">
+			<div class="match-control">
+				<button id="match_toggle" class="closed" type="submit">Créer le jeu</button>
+			</div>
+			<div class="option-control">
+				<label>lien video : </label><input type="text" placeholder="lien youtube" id="link_input" name="link_input"><br />
+				<label>Date du match : </label><input type="text" placeholder="2020-01-01 00:00:00" id="time_input" name="time_input"><br />
+				<label>Date d'affichage des grilles : </label><input type="text" placeholder="2020-01-01 00:00:00" id="grid_time_input" name="grid_time_input">
+				<div id="error">Une erreur critique est survenue, contactez Ando</div>
+			</div>
+		</div>
+
+		<form id="number_form">
+			<label>N° en cours : </label>
+			<input type="text" id="number_input" placeholder="0" name="number_input">
+			<button id="number_submit" type="submit">OK</button>
+			<button id="cancel_number">Annuler N°</button>
+			<button id="zap_round">Zapper le round</button>
+			<div id="round"></div>
+			<div id="stats"></div>
+			<div id="number"></div>
+			<div id="numbers"></div>
+		</form>
+	</div>
+
+	<div id="container">
+		<div id="notification_container">
+		</div>
+	</div>
+	<div class="video">
+		<form id="spam_form">
+			<label>Spam : </label><br />
+			<label>Fichier : </label>Patrick Bruel
+			<input type="text" placeholder="Nom du lot" id="spam_img_input" name="spam_img_input">
+			<button id="spam_submit" type="submit">OK</button>
+		</form>
+		<div id="spam_container">
+		</div>
+		<br />
+		<form id="prize_form">
+			<label>Entrez un lot à ajouter à ce match</label><br />
+			<input type="text" placeholder="Nom du lot" id="prize_input" name="prize_input">
+			<label>pour round N°</label><input type="text" value="1" id="prize_input_round" name="prize_input_round">
+			<button id="prize_submit" type="submit">OK</button>
+		</form>
+		<div id="prize_container">
+		</div>
+	</div>
+
+	<div id="notification_template" data-id="" class="notification">
+		<div class="info">Grille validée :</div>
+		<div class="grid"></div>
+		<button class="validate">Valider</button>
+		<button class="reject">Effacer</button>
+		<button class="chifoumi">Chifoumi</button>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+	<script type="text/javascript">
+		var matchToggler = $("#match_toggle");
+		var matchTogglerPause = $("#match_toggle_pause");
+		var linkInput = $('#link_input');
+		var timeInput = $('#time_input');
+		var gridTimeInput = $('#grid_time_input');
+		var error = $("#error");
+		var numberSubmit = $("#number_submit");
+		var prizeSubmit = $("#prize_submit");
+		var spamSubmit = $("#spam_submit");
+		var cancelNumber = $('#cancel_number');
+		var notificationTemplate = $("#notification_template");
+		var notificationContainer = $("#notification_container");
+		var prizeContainer = $("#prize_container");
+		var zapRound = $('#zap_round');
+		var prizeInputRound = $('#prize_input_round');
+		var numberInput = $('#number_input');
+		var spamContainer = $('#spam_container');
+		var spamInput = $('#spam_input');
+		var spamImgInput = $('#spam_img_input');
+
+		var chatTemplate = $("#chat_template");
+		var chatContainer = $("#chat_container");
+
+		var chifoumiFlag = false;
+
+		matchTogglerPause.click(function (e) {
+			if ($(this).hasClass('started')) {
+				pauseGame();
+				$(this).html("Reprendre");
+			}
+			if ($(this).hasClass('paused')) {
+				unpauseGame();
+				$(this).html("Mettre en pause");
+			}
+			$(this).toggleClass('paused');
+			$(this).toggleClass('started');
+		})
+
+		zapRound.click(function (e) {
+			addRound();
+			e.preventDefault();
+			return false;
+		});
+
+		numberSubmit.click(function (e) {
+			numberSubmit.off('click');
+			setNumber();
+			e.preventDefault();
+			return false;
+		});
+
+		cancelNumber.click(function (e) {
+			cancelNumber.off('click');
+			setCancel();
+			e.preventDefault();
+			return false;
+		});
+
+		prizeSubmit.click(function (e) {
+			prizeSubmit.off('click');
+			setPrize();
+			e.preventDefault();
+			return false;
+		});
+
+		spamSubmit.click(function (e) {
+			spamSubmit.off('click');
+			setSpam();
+			e.preventDefault();
+			return false;
+		});
+
+		linkInput.blur(function (e) {
+			$(this).removeClass('focus');
+			sendOption('link', $(this).val());
+		});
+
+		timeInput.blur(function (e) {
+			$(this).removeClass('focus');
+			sendOption('time', $(this).val());
+		});
+
+		gridTimeInput.blur(function (e) {
+			$(this).removeClass('focus');
+			sendOption('gridtime', $(this).val());
+		});
+
+		linkInput.focus(function (e) {
+			$(this).addClass('focus');
+		});
+
+		timeInput.focus(function (e) {
+			$(this).addClass('focus');
+		});
+
+		gridTimeInput.focus(function (e) {
+			$(this).addClass('focus');
+		});
+
+		function sendOption(type, val) {
+			$.ajax({
+		        url : 'admin/setoption',
+		        type : 'POST',
+		        data : {
+		        	type : type,
+		        	val : val
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+		function getOption() {
+			$.ajax({
+		        url : 'admin/getoption',
+		        type : 'GET',
+		        dataType : 'json',
+		        success : function (data) {
+		        	for (var i in data) {
+		        		if (data[i].name == "link") {
+		        			linkInput.val(data[i].value);
+		        		}
+		        		if (data[i].name == "time") {
+		        			timeInput.val(data[i].value);
+		        		}
+		        		if (data[i].name == "gridtime") {
+		        			gridTimeInput.val(data[i].value);
+		        		}
+		        	}
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+		getOption();
+
+		$("#number_form").submit(function (e) {numberSubmit.click(); e.preventDefault(); return false;});
+		$("#prize_form").submit(function (e) {prizeSubmit.click(); e.preventDefault(); return false;});
+		$("#spam_form").submit(function (e) {spamSubmit.click(); e.preventDefault(); return false;});
+		displayPrizes();
+
+		var timeout = 4000;
+		var setted = 4000;
+		var numbers = [];
+		var video_link = null;
+		function getGrids() {
+			$.ajax({
+		        url : 'admin/status',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+		        	matchToggler.off("click");
+		        	if (data.status == "started") {
+		        		matchToggler.addClass("started");
+		        		matchToggler.removeClass("closed");
+		        		matchToggler.html("Détruire le match");
+		        		matchToggler.click(function (e) {
+		        			stopGame();
+		        		});
+						matchTogglerPause.html("Mettre en Pause");
+						matchTogglerPause.addClass('started');
+						matchTogglerPause.removeClass('paused');
+		        	} else if (data.status == "stopped") {
+		        		matchToggler.addClass("closed");
+		        		matchToggler.removeClass("started");
+		        		matchToggler.html("Créer le match");
+		        		matchToggler.click(function (e) {
+		        			startGame();
+		        		});
+		        	} else if (data.status == "paused") {
+		        		matchToggler.addClass("started");
+		        		matchToggler.removeClass("closed");
+		        		matchToggler.html("Détruire le match");
+		        		matchToggler.click(function (e) {
+		        			stopGame();
+		        		});
+						matchTogglerPause.html("Reprendre");
+						matchTogglerPause.addClass('paused');
+						matchTogglerPause.removeClass('started');
+		        	}
+		        	numbers = [];
+		        	for (var i in data.all) {
+		        		numbers[i] = parseInt(data.all[i]);
+		        	}
+		        	if (numbers.length == 0)
+			    		$(".notification.validated").hide();
+					$("#round").html("<span class='label'>round :</span> "+data.round);
+					if (!prizeInputRound.val())
+						prizeInputRound.val(data.round==1?data.round:data.round+1);
+					$("#stats").html("<span class='label'>grilles en jeu :</span> "+data.grid);
+					$("#number").html("<span class='label'>N° en cours :</span> "+data.current);
+					$("#numbers").html("<span class='label'>N° tirés :</span> "+data.all.join(' , '));
+
+					if (!timeInput.hasClass('focus'))
+						timeInput.val(data.time);
+					if (!gridTimeInput.hasClass('focus'))
+						gridTimeInput.val(data.gridtime);
+					if (!linkInput.hasClass('focus'))
+						linkInput.val(data.link);
+
+					if (video_link != data.link) {
+						video_link = data.link;
+					}
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		var notifid = 0;
+		var chatid = 0;
+		function getNotifications() {
+			$.ajax({
+		        url : 'admin/notification',
+		        type : 'POST',
+		        data : {
+		        	id : notifid
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+		        	for (var i in data) {
+		        		displayNotification(data[i]);
+		        		notifid  = data[i].nid;
+		        	}
+			    },
+		    	error : function (data) {
+		    		displayError();
+					window.clearTimeout(setted);
+			    }
+		    });
+		}
+		getGrids();
+		getNotifications();
+		window.setInterval(getGrids, timeout);
+		window.setInterval(getNotifications, timeout);
+
+		function displayNotification(data) {
+			var notif = notificationTemplate.clone();
+
+			notif.removeAttr('id');
+
+			var grid = JSON.parse(data.full_grid);
+
+			var flatgrid = "<table>";
+			for (var i in grid) {
+				flatgrid = flatgrid+"<tr>";
+				for (var j in grid[i]) {
+					if (grid[i][j] && numbers.indexOf(parseInt(grid[i][j])) > -1) {
+						flatgrid = flatgrid+"<td style='color:#00fb00'>"+grid[i][j]+"</td>";
+					} else {
+						flatgrid = flatgrid+"<td>"+grid[i][j]+"</td>";
+					}
+				}
+				flatgrid = flatgrid+"</tr>";
+			}
+			flatgrid = flatgrid+"</table>";
+			var wintype = "sa grille";
+			var line_in = (data.round_number%3) == 0?3:data.round_number%3;
+			if (line_in == 1)
+				wintype = "une quine";
+			if (line_in == 2)
+				wintype = "une double quine";
+			if (line_in == 3)
+				wintype = "un carton";
+			notif.find('.info').html((data.pseudo?data.pseudo:"")+" ("+(data.phone?data.phone:"")+") ("+(data.email?data.email:"")+") à <strong>"+wintype+"</strong>");
+			notif.find('.grid').html(flatgrid);
+
+			notif.attr('data-id', data.nid);
+			notif.attr('data-grid', data.grid_id);
+			notif.find('.validate').click(function (e) {
+				validate(notif);
+			});
+			notif.find('.reject').click(function (e) {
+				reject(notif);
+			});
+			notif.find('.chifoumi').click(function (e) {
+				chifoumi(notif);
+			});
+
+			notificationContainer.append(notif);
+			notif.show();
+		}
+
+		$('.flush').click(function (e) {
+			$.ajax({
+		        url : 'admin/flush',
+		        type : 'GET',
+		        success : function (data) {
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		});
+
+		function displayChat(data) {
+			if (!data.pseudo && data.message == "rideauflush") {
+				chatContainer.html(chatTemplate);
+				return;
+			}
+			var post = chatTemplate.clone();
+
+			post.removeAttr('id');
+			post.find('.chat_pseudo').html(data.pseudo?data.pseudo:"");
+			post.find('.chat_message').html(data.message);
+
+			post.attr('data-id', data.id);
+			post.find('.ban').click(function (e) {
+				ban(post);
+			});
+			chatContainer.append(post);
+			post.show();
+		}
+
+		function ban(post) {
+			$.ajax({
+		        url : 'admin/ban',
+		        type : 'POST',
+		        data : {
+		        	id : post.attr('data-id')
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+	        		post.addClass("banned")
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function validate(notif) {
+			$.ajax({
+		        url : 'admin/validate',
+		        type : 'POST',
+		        data : {
+		        	"id" : notif.attr('data-grid'),
+		        	"nid" : notif.attr('data-id')
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+		        	notif.addClass('validated');
+		        	displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function reject(notif) {
+			$.ajax({
+		        url : 'admin/reject',
+		        type : 'POST',
+		        data : {
+		        	"id" : notif.attr('data-grid'),
+		        	"nid" : notif.attr('data-id')
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+		        	notif.addClass('rejected');
+		        	displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function chifoumi(notif) {
+			$.ajax({
+		        url : 'admin/chifoumi',
+		        type : 'POST',
+		        data : {
+		        	"id" : notif.attr('data-grid'),
+		        	"nid" : notif.attr('data-id')
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+		        	if (data.chifoumi.length >= 2) {
+		        		chifoumiFlag = true;
+		        	}
+		        	notif.addClass('chifoumid');
+		        	displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function displayPrizes() {
+			$.ajax({
+		        url : 'admin/prize_list',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+		        	prizeContainer.html("");
+		        	for (var i in data) {
+		        		prizeContainer.append("<div class='prize'>R "+data[i].round_number+" : "+data[i].name+(data[i].pseudo?(" <span class='unselected'>pour</span> <span class='winner'>"+data[i].pseudo+" ("+data[i].phone+") ("+data[i].email+")</span>"): " <span class='unselected'>à gagner</span>")+"</div>")
+		        	}
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function displaySpams() {
+			$.ajax({
+		        url : 'admin/spam_list',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+		        	spamContainer.html("");
+					var spamSync = false;
+		        	for (var i in data) {
+		        		spamContainer.append("<div class='spam'>"+data[i].name+(data[i].email?(" <span class='unselected'>pour</span> <span class='winner'>"+data[i].pseudo+" ("+data[i].phone+") ("+data[i].email+")</span>"): " <span class='unselected'>à gagner</span>")+"</div>");
+
+	        			spamSync = false;
+		        		if (!data[i].pseudo) {
+		        			spamSync = true;
+		        		}
+		        	}
+
+		        	if (spamSync) {
+		        		window.setTimeout(displaySpams, 1000);
+		        	}
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+		displaySpams();
+
+		function setSpam() {
+			var formData = new FormData();
+			formData.append("spam[name]", document.getElementById("spam_img_input").value);
+			$.ajax({
+				url: "/admin/add_spam",
+				data: formData,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+		        success : function (data) {
+					$('#spam_input').val("");
+					$('#spam_img_input').val("");
+		        	displaySpams();
+					spamSubmit.click(function (e) {
+						spamSubmit.off('click');
+						setSpam();
+						e.preventDefault();
+						return false;
+					});
+			    },
+		    	error : function (data) {
+		    		displayError();
+					spamSubmit.click(function (e) {
+						spamSubmit.off('click');
+						setSpam();
+						e.preventDefault();
+						return false;
+					});
+			    }
+			});
+		}
+
+		function setPrize() {
+			$.ajax({
+		        url : 'admin/add_prize',
+		        type : 'POST',
+		        data : {
+					"round" : prizeInputRound.val(),
+					"name" : $('#prize_input').val()
+		        },
+		        dataType : 'json',
+		        success : function (data) {
+		        	prizeInputRound.val(data[data.length-1].round_number+1);
+					$('#prize_input').val("");
+		        	displayPrizes();
+					prizeSubmit.click(function (e) {
+						prizeSubmit.off('click');
+						setPrize();
+						e.preventDefault();
+						return false;
+					});
+			    },
+		    	error : function (data) {
+		    		displayError();
+					prizeSubmit.click(function (e) {
+						prizeSubmit.off('click');
+						setPrize();
+						e.preventDefault();
+						return false;
+					});
+			    }
+		    });
+		}
+
+		function setNumber() {
+			$.ajax({
+		        url : 'admin/number',
+		        type : 'POST',
+		        data : {
+					"number" : numberInput.val(),
+			    },
+		        dataType : 'json',
+		        success : function (data) {
+		        	getGrids();
+		        	displayPrizes();
+		        	numberInput.val("");
+					numberSubmit.click(function (e) {
+						numberSubmit.off('click');
+						setNumber();
+						e.preventDefault();
+						return false;
+					});
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+		function setCancel() {
+			$.ajax({
+		        url : 'admin/cancel_number',
+		        type : 'GET',
+		        dataType : 'json',
+		        success : function (data) {
+		        	getGrids();
+		        	displayPrizes();
+					cancelNumber.click(function (e) {
+						cancelNumber.off('click');
+						setCancel();
+						e.preventDefault();
+						return false;
+					});
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+		}
+
+	    function startGame() {
+			$.ajax({
+		        url : 'admin/start_game',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+		        	displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+	    }
+
+		function stopGame() {
+			$.ajax({
+		        url : 'admin/stop_game',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+					notifid = 0;
+					notificationContainer.html();
+					displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+	    }
+
+
+		function pauseGame() {
+			$.ajax({
+		        url : 'admin/pause_game',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+					displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+	    }
+		function unpauseGame() {
+			$.ajax({
+		        url : 'admin/unpause_game',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+					displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+	    }
+		function addRound() {
+			$.ajax({
+		        url : 'admin/add_round',
+		        type : 'POST',
+		        dataType : 'json',
+		        success : function (data) {
+					displayPrizes();
+			    },
+		    	error : function (data) {
+		    		displayError();
+			    }
+		    });
+	    }
+
+	    function displayError(err = null) {
+	    	if (err)
+	    		error.html(err);
+	    	error.show();
+	    	setTimeout(function () {
+	    		error.hide();
+	    	}, 3000)
+	    }
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Magistral', sans-serif;
+    font-size: 62.5%;
+    background: #000;
+}
+
+body {
+    font-size: 1.6rem;
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    color: #fff;
+    text-align: center;
+    background-attachment: fixed;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    grid-gap: 2vh;
+}
+
+p {
+    display: grid;
+}
+
+    p span:first-child {
+        font-weight: 900;
+    }

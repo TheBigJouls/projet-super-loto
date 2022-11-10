@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>SUPER LOTO KLOUDBOX</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/mobile.css">
+	<link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/footer-mobile.css">
+        <link rel="stylesheet" href="css/footer-desktop.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+	<link rel="stylesheet" href="https://use.typekit.net/sba6zyx.css">
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+<section>
+    <main class="ehidden" id="m1">
+        <div class="homeLoto">
+            <img id="logoSuperloto" src="images/SuperLotoKloudbox-logo.svg" alt="Logo du Super Loto 10000">
+            <p>C'est gratuit ! <br> C'est caritatif ! <br> C'est gagnééé !</p></p>
+        </div>
+
+        <img class="downArrow" src="images/fleche-bas.svg" alt="flèche bas">
+    
+        <form class="myLotoForm" action="myLotoForm" method="post">
+            <legend>Inscrivez-vous pour participer !</legend>
+            <input type="email" id="mail" name="email" placeholder="Email">
+            <input class="reg" type="text" id="pseudo" name="pseudo" placeholder="Pseudo">
+            <input class="reg" type="text" id="nom" name="nom" placeholder="Nom">
+            <input class="reg" type="text" id="prenom" name="prenom" placeholder="Prénom">
+            <input class="reg" type="tel" name="phone" id="tel" placeholder="Téléphone">
+            <input type="password" name="password" id="password" placeholder="Mot de passe">
+            <a id="oubliMdp" href="/forgor">Mot de passe oublié</a>
+            <div class="g-recaptcha" data-sitekey="6Lf5t6IdAAAAADwy5VqFNZrhybqGCDnVL8gFBiXZ"></div>
+            <button id="submit">Inscription</button>
+            <button id="switch">Connexion</button>
+        </form>
+    </main>
+
+    <div class="confirmSubmitConteneur" style="display: none;">
+        <div class="confirmSubmitBox">
+           <p>
+                <span style="color: #ff00ff;">C'est peut être gagné !</span>
+                <span style="color: #00ffff;">BRAVO !</span>
+                <span style="font-size: 1.6rem; font-weight: 400;">Tu fais maintenant partie des gagnants potentiels du Super Loto Kloudbox.
+                <br>
+                Tu auras tes 3 cartons lorsque le jeu commencera !
+                <br>
+                Rendez-vous donc le Samedi 18 Décembre à 20H.
+                <br>
+                Philippe Maurice t’attendra dans la grande salle des fêtes de l'Internet.</span>
+            </p>
+
+            <div class="yt-container">
+                <iframe class="video" allow="autoplay" frameborder="0" marginheight="0" scrolling="no" type="text/html" src="https://www.youtube.com/embed/EokEJpzVoHs?fs=1&showinfo=0&rel=0&cc_load_policy=0&iv_load_policy=3"></iframe>
+            </div>
+
+            <a href="https://superloto.kloudbox.com/loto" id="confirmButton">Pigé ?</a>
+        </div>
+    </div>
+</section>
+
+<!------------------------------------->
+
+    <script type="text/javascript">
+        const serialize = function (formEle) {
+            // Get all fields
+            const fields = [].slice.call(formEle.elements, 0);
+
+            return fields
+                .map(function (ele) {
+                    const name = ele.name;
+                    const type = ele.type;
+
+                    if (!name || ele.disabled || type === 'file' || (/(checkbox|radio)/.test(type) && !ele.checked)) {
+                        return '';
+                    }
+
+                    // Multiple select
+                    if (type === 'select-multiple') {
+                        return ele.options
+                            .map(function (opt) {
+                                return opt.selected ? `${encodeURIComponent(name)}=${encodeURIComponent(opt.value)}` : '';
+                            })
+                            .filter(function (item) {
+                                return item;
+                            })
+                            .join('&');
+                    }
+
+                    return `${encodeURIComponent(name)}=${encodeURIComponent(ele.value)}`;
+                })
+                .filter(function (item) {
+                    return item;
+                })
+                .join('&');
+        };
+
+        //playground
+        const ehtml = document.querySelector('html');
+        const esubmit = document.querySelector('#submit');
+        const eswitch = document.querySelector('#switch');
+        const emyLotoForm = document.querySelector('.myLotoForm');
+        const econfirmSubmitConteneur = document.querySelector('.confirmSubmitConteneur');
+        const econfirmButton = document.querySelector('#confirmButton');
+        const emain1 = document.querySelector('#m1');
+        const elegend = document.querySelector('.myLotoForm legend');
+
+        var regflag = true;
+        window.addEventListener('load', () => {
+            emain1.classList.remove("ehidden");
+            econfirmSubmitConteneur.classList.add("ehidden");
+            //check
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", (data) => {
+                if (xhr.status == 403) {
+                    emain1.classList.remove("ehidden");
+                    econfirmSubmitConteneur.classList.add("ehidden");
+                } else {
+                    emain1.classList.add("ehidden");
+	                econfirmSubmitConteneur.style.display = "grid";
+                    econfirmSubmitConteneur.classList.remove("ehidden");
+                }
+            });
+            xhr.addEventListener('error', () => {
+                emain1.classList.remove("ehidden");
+                econfirmSubmitConteneur.classList.add("ehidden");
+            });
+            xhr.open("GET", "/check", true);
+            xhr.send();
+        });
+
+        eswitch.addEventListener('click', (e) => {
+            emyLotoForm.classList.toggle("connecting");
+            if (regflag) {
+                regflag = false;
+                esubmit.innerHTML = "Connexion";
+                eswitch.innerHTML = "Inscription";
+            } else {
+                regflag = true;
+                esubmit.innerHTML = "Inscription";
+                eswitch.innerHTML = "Connexion";
+            }
+            e.preventDefault();
+            return false;
+        });
+
+        esubmit.addEventListener('click', (e) => {
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", (data) => {
+            	if (xhr.status == 200) {
+	                econfirmSubmitConteneur.style.display = "grid";
+                    econfirmSubmitConteneur.classList.remove("ehidden");
+	                emain1.classList.add("ehidden");
+	            } else {
+	                elegend.style.color = "red";
+	                elegend.innerHTML = "Email ou mot de passe invalide";
+	                setTimeout(() => {
+	                    elegend.style.color = "#000";
+	                }, 2000);
+            	}
+            });
+            xhr.addEventListener("error", (data) => {
+                elegend.style.color = "red";
+                elegend.innerHTML = "Email ou mot de passe invalide";
+                setTimeout(() => {
+                    elegend.style.color = "#000";
+                }, 2000);
+            });
+            xhr.open("POST", "/register", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send(serialize(emyLotoForm));
+            e.preventDefault();
+            return false;
+        });
+    </script>
+</body>
+</html>

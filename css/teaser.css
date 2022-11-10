@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+a {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Magistral', sans-serif;
+    font-size: 62.5%;
+    background: #000;
+}
+
+body {
+    font-size: 1.4rem;
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    background-attachment: fixed;
+}
+
+section {
+    min-height: 100vh;
+    display: grid;
+    grid-gap: 1vh;
+	padding: 2%;
+	box-sizing: border-box;
+}
+
+    header {
+        padding: 2%;
+        align-self: center;
+    }
+
+    main {
+        display: grid;
+        justify-items: center;
+        align-content: space-between;
+        grid-gap: 1vh;
+    }
+
+        main div {
+            display: grid;
+            justify-items: center;
+            font-size: 2rem;
+        }
+
+            #teaser {
+                color: #ffff00;
+                font-weight: 700;
+                font-size: 3rem;
+            }
+
+
+.qrCodeBox {
+    padding: 2vh;
+}
+
+    #qrCode {
+        width: 15rem;
+    }
+
+    .qrCodeBox p {
+        white-space: nowrap;
+        font-size: 1.4rem;
+    }
+
+    

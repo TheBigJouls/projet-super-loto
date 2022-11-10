@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+a {
+    cursor: pointer;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+.shake-opacity {
+    animation-name: shake-opacity;
+    animation-duration: 120ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Magistral', sans-serif;
+    font-size: 62.5%;
+    background: #000;
+}
+
+body {
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    background-attachment: fixed;
+}
+
+.hidden {
+    display: none;
+}
+
+.countDown {
+    position: fixed;
+    z-index: 99999999;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    display: grid;
+    justify-items: center;
+    align-content: space-evenly;
+    padding: 2%;
+    box-sizing: border-box;
+    top: 0%;
+    left: 0;
+}
+
+    #annonce {
+        display: grid;
+        grid-gap: 2vh;
+    }
+
+    #countDown {
+        color: #ffff00;
+    }
+
+    .tuto {
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        grid-gap: 2vh;
+        box-sizing: border-box;
+    }
+
+        #phifou {
+            width: 20rem;
+            animation: phifou 1s infinite;
+        }
+        @keyframes phifou {
+            0% {
+                transform: rotate(-45deg);
+            }
+            50% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(-45deg);
+            }
+        }
+
+        .tuto a {
+            font-size: 2rem;
+            color: #00ffff;
+        }
+
+            .tuto a:hover {
+                color: #fff;
+            }
+
+section {
+    min-height: 100vh;
+	animation: border 3s infinite;
+	padding: 2%;
+    box-sizing: border-box;
+}
+@keyframes border {
+	0% {
+		border-color: #00ffff;
+	}
+	50% {
+		border-color: #00ff82;
+	}
+	100% {
+		border-color: #ffff00;
+	}
+}
+
+    .leftConteneur {
+        width: 100%;
+        position: relative;
+    }
+
+        #hideLive {
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            padding: 2vh;
+        }
+
+        #showLive {
+            display: none;
+            padding: 2vh;
+        }
+
+            #hideLive img, #showLive img {
+                width: 2rem;
+            }
+
+            .liveBox {
+                height: 30vh;
+            }
+
+            #embed {
+                max-width: 100%;
+                height: 100%;
+            }
+
+        .lotoBoard {
+            text-transform: uppercase;
+            padding: 1vh 0;
+            color: #ffff00;
+            font-weight: 700;
+        }
+
+            .lastNumBox {
+                
+            }
+
+                .lastNumBox p {
+                    font-weight: 400;
+                    font-size: 1.2rem;
+                }
+
+                #lastNum {
+                    font-size: 10rem;
+                }
+
+            .donationButton {
+                background: linear-gradient(#ff00ff,#000066);
+                border-radius: 100%;
+                width: 100px;
+                height: 100px;
+                display: grid;
+                justify-items: center;
+                align-content: center;
+                font-size: 2rem;
+                position: relative;
+                cursor: pointer;
+            }
+
+                .donationButton a {
+                    position: relative;
+                    z-index: 1;
+                    color: #ffff00;
+                    text-decoration: none;
+                }
+
+                #enrico {
+                    max-width: 50%;
+                    position: absolute;
+                }
+
+            .buzzButton {
+                background: linear-gradient(#ff00ff,#000066);
+                border-radius: 100%;
+                width: 100px;
+                height: 100px;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                font-size: 2rem;
+                transform: rotate(-10deg);
+                line-height: .8;
+                font-style: italic;
+                cursor: pointer;
+            }
+
+                .buzzButton p {
+
+                }
+
+.qrCodeBox {
+
+}
+
+    #qrCode {
+        width: 15rem;
+    }
+
+    .rightConteneur {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-content: space-between;
+        grid-gap: 2vh;
+    }
+
+        .cartons {
+            width: inherit;
+            font-size: 2rem;
+            color: #000;
+            cursor: pointer;
+        }
+
+            th {
+                padding: 3vh .5vw;
+            }
+
+                th a, th a:link {
+                    padding: 1vw;
+                    color: black;
+                }
+
+            .carton1 {
+                border: solid 1px #ff00ff;
+            }
+
+                .carton1 th {
+                    border: solid 1px #ff00ff;
+                    color: black;
+                }
+                .carton1 th.fill {
+                    background: #ff00ff;
+                }
+
+            .carton2 {
+                border: solid 1px #00ffff;
+            }
+
+                .carton2 th {
+                    border: solid 1px #00ffff;
+                    color: black;
+                }
+                .carton2 th.fill {
+                    background: #00ffff;
+                }
+
+            .carton3 {
+                border: solid 1px #00ff82;
+            }
+
+                .carton3 th {
+                    border: solid 1px #00ff82;
+                    color: black;
+                }
+                .carton3 th.fill {
+                    background: #00ff82;
+                }
+
+            th:focus th a, th:active th a, th:visited th a {
+                background: #ffff00;
+                border-radius: 100px;
+            }
+
+        .selected {
+            background: #ffff00;
+            border-radius: 100%;
+        }
+
+        .carton1 .filled {
+            background: #ff00ff;
+        }
+
+        .carton2 .filled {
+            background: #00ffff;
+        }
+
+        .carton3 .filled {
+            background: #00ff82;
+        }
+
+#section {
+  position: fixed;
+  z-index: 999999999;
+}
+#roamer {
+  position: fixed;
+  width: 250px;
+  background : red;
+  height: 210px;
+  z-index: 1000000000;
+  cursor: pointer;
+}

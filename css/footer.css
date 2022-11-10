@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Magistral', sans-serif;
+    font-size: 62.5%;
+    background: #000;
+}
+
+body {
+    font-size: 1.4rem;
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    background-attachment: fixed;
+}
+
+footer {
+    width: 100%;
+    background: #000;
+    padding: 1vh 2vw;
+    font-size: 1rem;
+    font-weight: 400;
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 2vh;
+    letter-spacing: 1px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+        .logosBox {
+            display: grid;
+            grid-gap: 2vh;
+        }
+
+            #logoKloudbox {
+                width: 6rem;
+            }
+
+                #logoKloudbox:hover {
+                    filter: grayscale(1);
+                }
+
+                        .socialBox img:hover {
+                            animation: social 1s ease-in-out;
+                        }
+                        @keyframes social {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            30% {
+                                transform: rotate(-30deg);
+                            }
+                            70% {
+                                transform: rotate(450deg);
+                            }
+                            100% {
+                                transform: rotate(300deg);
+                            }
+                        }
+
+                #logoLaharde {
+                    width: 6rem;
+                }
+
+
+            .winamax {
+                display: grid;
+                justify-items: center;
+                grid-gap: 2vh;
+            }
+
+                #logoWinamax {
+                    width: 6rem;
+                }
+
+                    #logoWinamax:hover {
+                        filter: grayscale(1);
+                    }
+
+                #logo-18 {
+                    width: 2rem;
+                }
+
+        .linksBox {
+            display: grid;
+            grid-gap: 2vh;
+        }
+
+            .linksBox a {
+                text-decoration: none;
+                font-weight: 900;
+                color: #fff;
+            }
+
+            .linksBox a:hover {
+                background: linear-gradient(-45deg,#00ffff 0%,#ff00ff 100%);
+                background-clip: border-box;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+        #copyright {
+            border-top: solid 1px #121212;
+            color: #3e3e3e;
+            font-weight: 700;
+            padding: 2vh;
+        }

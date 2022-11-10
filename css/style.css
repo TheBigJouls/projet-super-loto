@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+a, button {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.shake-opacity {
+    animation-name: shake-opacity;
+    animation-duration: 100ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+img {
+    max-width: 100%;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Magistral', sans-serif;
+    font-size: 62.5%;
+    background: #000;
+}
+
+body {
+    font-size: 1.4rem;
+    min-height: 100%;
+    width: 100%;
+    background: linear-gradient(#000066, transparent), url("../images/noise.svg"), linear-gradient(#000066, #ff00ff);
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    background-attachment: fixed;
+}
+
+section {
+    min-height: 100vh;
+    display: grid;
+    grid-gap: 1vh;
+	padding: 2%;
+	box-sizing: border-box;
+}
+
+    #m1 {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        padding: 1%;
+    }
+
+    .ehidden {
+        display: none !important;
+    }
+
+        header {
+            padding: 2vh;
+        }
+
+    .yt-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .homeLoto {
+        font-weight: 400;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        grid-gap: 2vh;
+    }
+
+     .homeLoto p {
+         white-space: nowrap;
+         font-size: 4rem;
+         font-weight: 900;
+         text-transform: uppercase;
+         color: #00ffff;
+         text-shadow: #ff00ff 0 0 10px;
+         animation: blink 1.4s linear infinite;
+     }
+     @keyframes blink {
+         from {
+             opacity: 1;
+         }
+         to {
+            opacity: 0;
+        }
+     }
+
+        #logoSuperloto {
+            width: 30rem;
+        }
+
+    .downArrow {
+        width: 5rem;
+        animation: fleche .8s infinite;
+    }
+
+        @keyframes fleche {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        } 
+
+    .myLotoForm {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        grid-gap: 1vh;
+        
+    }
+
+        .myLotoForm legend {
+            color: #ffff00;
+            transition : 0.5s;
+            font-size: 3rem;
+        }
+
+        .myLotoForm input {
+            color: #fff;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 4px;
+            width: 60%;
+            padding: 2vh 2vw;
+        }
+
+            .myLotoForm ::placeholder {
+                font-weight: 400;
+                color: #fff;
+                font-style: italic;
+            }
+
+            #oubliMdp {
+                font-size: 1.2rem;
+                font-weight: 400;
+                text-decoration: underline;
+            }
+
+        #submit {
+            font-size: 1.8rem;
+            color: #000;
+            background: #ffff00;
+            font-weight: 900;
+            padding: 2vh 2vw;
+            border-radius: 4px;
+            text-transform: uppercase;
+            border: none;
+            width: 60%;
+        }
+
+            #submit img {
+                width: 2rem;
+            }
+
+            #submit:hover {
+                background: #00ffff;
+            }
+
+        #switch {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: none;
+            color: #ffff00;
+            padding: 2vh 2vw;
+            border-radius: 4px;
+            text-transform: uppercase;
+            border: none;
+            text-decoration: underline;
+        }
+
+            #switch:hover {
+                color: #00ffff;
+            }
+
+            .reg {
+              margin-top: 0px;
+              opacity: 1;
+              transition: margin-top 0.35s, opacity 0.35s;
+            }
+
+            #submit span {
+                transition : 0.2s;
+            }
+
+            form.myLotoForm.connecting input.reg {
+              margin-top: -50px;
+              opacity: 0;
+              z-index: -1;
+            }
+
+            form.myLotoForm.connecting input[type=password] {
+              margin-top: -50px;
+            }
+
+.confirmSubmitConteneur {
+    position: static;
+    z-index: 999999999999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+
+    .confirmSubmitBox {
+        /* background: linear-gradient(#ff00ff, transparent), url("../images/noise.svg"), linear-gradient(#ff00ff,#000066); */
+        background: #000;
+        border-radius: 4px;
+        padding: 2vh 4vw;
+        display: grid;
+        justify-items: center;
+        align-content: start;
+        grid-gap: 4vh;
+        box-sizing: border-box;
+    }
+
+        .confirmSubmitBox p {
+            font-size: 3rem;
+            display: grid;
+        }
+
+        #confirmSubmitVideo {
+            width: 100%;
+        }
+
+        #confirmButton {
+            text-transform: uppercase;
+            width: 50%;
+            background: #ffff00;
+            color: #000;
+            border-radius: 4px;
+            padding: 2vh 2vw;
+        }
+
+            #confirmButton:hover {
+                background: #00ffff;
+            }
+
+
+#section {
+  position: fixed;
+  z-index: 999999999;
+}
+#roamer {
+  position: fixed;
+  width: 200px;
+  background : red;
+  height: 200px;
+  z-index: 1000000000;
+  cursor: pointer;
+}
+
+#roamer {
+    margin: auto auto;
+}
