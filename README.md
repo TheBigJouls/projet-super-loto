@@ -4,7 +4,7 @@
 Après une première session en live sur Twitch en avril 2020 et une deuxième session à Noël 2021, le collectif KloudBox revient le <b>samedi 17 décembre 2022</b> pour le <b>Super Loto KloudBox</b> accompagné de l'indéboulonnable <b>Philippe Maurice</b> et en partenariat avec <b>WINAMAX</b> et la <b>Région Nouvelle-Aquitaine</b>. 
 
 A cette occasion, nous recherchons une agence et/ou des freelances implanté-es en Nouvelle-Aquitaine, qui pourront reprendre
-à leur compte le code déjà existant et le mettre à jour en amont et gérer les inscriptions du public pour le jeu en live le jour J.  
+à leur compte le code déjà existant et le mettre à jour en amont et gérer les inscriptions du public et le jeu en live le jour J.  
 
 Quelques exemples du front :<br>
 <a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Landing ></a><br>
