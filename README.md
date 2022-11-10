@@ -7,13 +7,13 @@ A cette occasion, nous recherchons une agence et/ou des freelances implanté-es 
 à leur compte le code déjà existant et le mettre à jour en amont et gérer les inscriptions du public pour le jeu en live le jour J.  
 
 Quelques exemples du front :
-<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a>
-<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a>
-<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a>
-<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a>
-<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a>
-<a href="https://www.twitch.tv/videos/1247843707" target="_blank">Notre page Twitch ></a> > 
-<a href="https://youtu.be/d6_OqkxNk3g" target="_blank">Une vidéo report de la session précédente ></a> 
+<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
+<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
+<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
+<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
+<a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
+<a href="https://www.twitch.tv/videos/1247843707" target="_blank">Notre page Twitch ></a><br>
+<a href="https://youtu.be/d6_OqkxNk3g" target="_blank">Une vidéo report de la session précédente ></a><br>
 
 Vous pourrez gérer notamment : 
 -mise à jour html et css (nouvelles infos et charte graphique)
