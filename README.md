@@ -23,8 +23,7 @@ Vous devrez gérer notamment :<br>
 -etc.<br>
 
 Nous savons que les délais sont courts, mais tout le programme de la plateforme de la session précédente sera disponible et vous serez en relation étroite avec l'équipe KloudBox et ses partenaires.<br>
-.
-Vous pouvez directement contacter Julien par mail ou téléphone pour demander des informations et proposer un devis<br>
+Vous pouvez directement contacter Julien par mail ou téléphone pour demander des informations et/ou proposer un devis<br>
 +33608342495<br>
 julien@kloudbox.com<br>
 
