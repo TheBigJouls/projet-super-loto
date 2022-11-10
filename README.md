@@ -6,7 +6,7 @@ Après une première session en live sur Twitch en avril 2020 et une deuxième s
 A cette occasion, nous recherchons une agence et/ou des freelances implanté-es en Nouvelle-Aquitaine, qui pourront reprendre
 à leur compte le code déjà existant et le mettre à jour en amont et gérer les inscriptions du public pour le jeu en live le jour J.  
 
-Quelques exemples du front :
+Quelques exemples du front :<br>
 <a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
 <a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
 <a href="https://thebigjouls.github.io/projet-super-loto/" target="_blank">Après inscription ></a><br>
